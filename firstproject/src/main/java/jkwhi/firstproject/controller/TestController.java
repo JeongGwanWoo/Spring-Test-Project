@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -48,5 +50,13 @@ public class TestController {
         boardService.saveBoard(board);
 
         return "redirect:/";
+    }
+
+    @GetMapping("/board/list")
+    public String list(Model model) {
+        List<Board> posts = boardService.findPosts();
+        model.addAttribute("posts", posts);
+
+        return "board/list";
     }
 }

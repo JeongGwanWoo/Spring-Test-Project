@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Slf4j
 @Repository
 @RequiredArgsConstructor
@@ -21,5 +23,9 @@ public class BoardRepository {
             log.info("DB 저장 이상함?");
             em.merge(board);
         }
+    }
+
+    public List<Board> findAll() {
+        return em.createQuery("select b from Board as b",Board.class).getResultList();
     }
 }
