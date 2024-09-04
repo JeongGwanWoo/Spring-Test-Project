@@ -23,7 +23,7 @@
                 <td th:text="${post.content}"></td>
                 <td>
                     <a href="#" th:href="@{/board/{id}/edit (id=${post.id})}" class="btn btn-primary" role="button">수정</a>
-                    <a class="btn btn-danger">삭제</a>
+<!--                    <a href="#" th:href="@{/board/list}" class="btn btn-danger" method="delete">삭제</a>-->
                 </td>
             </tr>
             </tbody>

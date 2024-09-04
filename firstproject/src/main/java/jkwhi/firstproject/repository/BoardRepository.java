@@ -27,10 +27,15 @@ public class BoardRepository {
     }
 
     public List<Board> findAll() {
-        return em.createQuery("select b from Board as b",Board.class).getResultList();
+        return em.createQuery("select b from Board as b", Board.class).getResultList();
     }
 
     public Board findOne(Long id) {
         return em.find(Board.class, id);
+    }
+
+    public void deleteOne(Board board) {
+
+        em.remove(board);
     }
 }

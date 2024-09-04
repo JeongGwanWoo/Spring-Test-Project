@@ -35,4 +35,9 @@ public class BoardService {
         findBoard.setTitle(title);
         findBoard.setContent(content);
     }
+
+    @Transactional
+    public void deleteBoard(Long boardId) {
+        boardRepository.deleteOne(boardRepository.findOne(boardId));
+    }
 }
