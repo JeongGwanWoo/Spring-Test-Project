@@ -22,4 +22,8 @@ public class BoardService {
     public List<Board> findPosts() {
         return boardRepository.findAll();
     }
+
+    public Board findOne(Long boardId) {
+        return boardRepository.findOne(boardId);
+    }
 }
