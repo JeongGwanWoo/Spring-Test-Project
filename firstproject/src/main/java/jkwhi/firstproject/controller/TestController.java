@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -62,7 +63,7 @@ public class TestController {
     }
 
     @GetMapping("/board/{boardId}/edit")
-    public String update(@PathVariable("boardId") Long boardId, Model model) {
+    public String updateBoardForm(@PathVariable("boardId") Long boardId, Model model) {
         Board board = boardService.findOne(boardId);
 
         TestForm form = new TestForm();
@@ -77,5 +78,9 @@ public class TestController {
     }
 
     @PostMapping("/board/{boardId}/edit")
-    public String
+    public String updateBoard(@PathVariable("boardId") Long boardId, @ModelAttribute("form") TestForm form) {
+        boardService.updateBoard(boardId, form.getName(), form.getTitle(), form.getContent());
+
+        return "redirect:/board/list";
+    }
 }
