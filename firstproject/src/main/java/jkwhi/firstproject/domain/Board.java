@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import static jakarta.persistence.FetchType.*;
-
 @Entity
 @Getter @Setter
 public class Board {
@@ -18,6 +16,9 @@ public class Board {
     private String name;
     private String title;
     private String content;
+
+    @Enumerated(EnumType.STRING)
+    private BoardStatus status; // INCLUDE, DELETE
 
     //==비즈니스 로직=//
 

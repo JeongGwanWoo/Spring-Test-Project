@@ -21,11 +21,22 @@
         </div>
         <td>
             <button type="submit" class="btn btn-primary">수정</button>
-            <a href="#" th:href="@{/board/list}" class="btn btn-danger" method="delete">삭제</a>
+<!--            <a href="#" th:href="@{/board/list}" class="btn btn-danger" method="delete">삭제</a>-->
+<!--            <button href="#" th:href="@{/board/{id}/delete (id=${form.id})}" type="submit" class="btn btn-danger">삭제</button>-->
+<!--            <a href="#" th:href="'javascript:delete('+${form.id}+')'" class="btn btn-danger">삭제</a>-->
         </td>
 
     </form>
     <div th:replace="fragments/footer :: footer" />
 </div> <!-- /container -->
 </body>
+<script>
+<!--    function delete(id) {-->
+<!--        var form = document.createElement("form");-->
+<!--        form.setAttribute("method", "post");-->
+<!--        form.setAttribute("action", "/board/" + id + "/delete");-->
+<!--        document.body.appendChild(form);-->
+<!--        form.submit();-->
+<!--    }-->
+</script>
 </html>

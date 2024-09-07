@@ -1,6 +1,7 @@
 package jkwhi.firstproject.controller;
 
 import jkwhi.firstproject.domain.Board;
+import jkwhi.firstproject.domain.BoardStatus;
 import jkwhi.firstproject.repository.BoardRepository;
 import jkwhi.firstproject.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +43,7 @@ public class TestController {
         board.setName(form.getName());
         board.setTitle(form.getTitle());
         board.setContent(form.getContent());
+        board.setStatus(BoardStatus.INCLUDE);
 
         log.info(form.getName() + " / " + form.getTitle() + " / " + form.getContent());
         log.info(board.getName() + " / " + board.getTitle() + " / " + board.getContent());
@@ -54,6 +56,7 @@ public class TestController {
     @GetMapping("/board/list")
     public String list(Model model) {
         List<Board> posts = boardService.findPosts();
+
         model.addAttribute("posts", posts);
 
         return "board/list";
@@ -78,13 +81,14 @@ public class TestController {
     public String updateBoard(@PathVariable("boardId") Long boardId, @ModelAttribute("form") TestForm form) {
         boardService.updateBoard(boardId, form.getName(), form.getTitle(), form.getContent());
 
-        Long deleteBoardId = boardId;
-
         return "redirect:/board/list";
     }
 
-//    @DeleteMapping("/board/list")
-//    public String deleteBoard() {
-//        boardService
-//    }
+    @PostMapping("/board/{boardId}/delete")
+    public String deleteBoard(@PathVariable("boardId") Long boardId) {
+        log.info("delete gogo");
+        boardService.deleteBoard(boardId);
+
+        return "redirect:/board/list";
+    }
 }

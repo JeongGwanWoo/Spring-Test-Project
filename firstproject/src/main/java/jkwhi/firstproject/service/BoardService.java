@@ -1,6 +1,7 @@
 package jkwhi.firstproject.service;
 
 import jkwhi.firstproject.domain.Board;
+import jkwhi.firstproject.domain.BoardStatus;
 import jkwhi.firstproject.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,9 @@ public class BoardService {
 
     @Transactional
     public void deleteBoard(Long boardId) {
-        boardRepository.deleteOne(boardRepository.findOne(boardId));
+
+        Board findBoard = boardRepository.findOne(boardId);
+        findBoard.setStatus(BoardStatus.DELETE);
+//        boardRepository.deleteOne(boardRepository.findOne(boardId));
     }
 }

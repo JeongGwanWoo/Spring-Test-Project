@@ -2,6 +2,7 @@ package jkwhi.firstproject.repository;
 
 import jakarta.persistence.EntityManager;
 import jkwhi.firstproject.domain.Board;
+import jkwhi.firstproject.domain.BoardStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -32,10 +33,5 @@ public class BoardRepository {
 
     public Board findOne(Long id) {
         return em.find(Board.class, id);
-    }
-
-    public void deleteOne(Board board) {
-
-        em.remove(board);
     }
 }

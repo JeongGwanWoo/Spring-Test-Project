@@ -16,14 +16,17 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="post : ${posts}">
+            <tr th:each="post : ${posts}" th:if="${post.status.name() == 'INCLUDE'}" >
                 <td th:text="${post.id}"></td>
                 <td th:text="${post.name}"></td>
                 <td th:text="${post.title}"></td>
                 <td th:text="${post.content}"></td>
                 <td>
                     <a href="#" th:href="@{/board/{id}/edit (id=${post.id})}" class="btn btn-primary" role="button">수정</a>
-<!--                    <a href="#" th:href="@{/board/list}" class="btn btn-danger" method="delete">삭제</a>-->
+<!--                    <a href="javascript:delete(1);" class="btn btn-danger" role="button">삭제</a>-->
+                </td>
+                <td>
+                    <a href="javascript:void(0)" th:href="'javascript:delete('+${post.id}+')'" class="btn btn-danger" role="button">삭제</a>
                 </td>
             </tr>
             </tbody>
@@ -32,4 +35,14 @@
     <div th:replace="fragments/footer :: footer"/>
 </div> <!-- /container -->
 </body>
+<script>
+    function delete(id) {
+        console.lnfo("asd");
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/board/" + id + "/delete");
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
 </html>
